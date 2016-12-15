@@ -127,8 +127,14 @@ class ErrorController(object):
                              "fix it.")}
 
 
+@view.view_config(route_name="healthcheck", renderer="string")
+def healthcheck(request):
+    return 'imok\n'
+
+
 def includeme(config):
     config.add_route("index", "/")
+    config.add_route("healthcheck", "/ruok")
     config.add_route("annotation_with_url", "/{id}/*url")
     config.add_route("annotation_without_url", "/{id}")
     config.scan(__name__)
